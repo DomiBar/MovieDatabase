@@ -1,3 +1,5 @@
+from faker import Faker
+
 class Movie:
     def __init__(self, title, year, genre, views):
         self.title = title
@@ -21,3 +23,26 @@ class Series(Movie):
     def __str__(self):
         #return "%s S%02dE%02d" % (self.title, self.season, self.episode)
         return f"{self.title} S{self.season:02d}E{self.episode:02d}"
+
+
+library=[]
+
+def get_movies(library):
+    movies=[]
+    for element in library:
+        if isinstance(element,Movie) and not(isinstance(element,Series)):
+            movies.append(element)
+
+def get_series(library):
+    series=[]
+    for element in library:
+        if isinstance(element,Series):
+            series.append(element)
+
+def search(title, library):
+    for element in library:
+        if title==element.title:
+            return element
+    else:
+        print("Nie znaleziono tytułu w bazie")
+
